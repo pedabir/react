@@ -278,7 +278,17 @@ module.exports = {
             exclude: cssModuleRegex,
             use: getStyleLoaders({
               importLoaders: 1,
+              modules: true,
+              localIdentName: '[name]__[local]__[hash:base64:5]'
             }),
+          },
+          {
+              test: /\.scss$/,
+              use: [
+                  require.resolve('style-loader'),
+                  require.resolve('css-loader'),
+                  require.resolve('sass-loader')
+              ]
           },
           // Adds support for CSS Modules (https://github.com/css-modules/css-modules)
           // using the extension .module.css
